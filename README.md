@@ -1,5 +1,5 @@
 # centos-rpm-fdk-aac-dabplus-odr
-CentOS 7 RPM Specfile for [Opendigitalradio's fork of the standalone library of the Fraunhofer FDK AAC code from Android (fdk-aac-dabplus)](https://github.com/Opendigitalradio/ka9q-fec) which is part of [RaBe's DAB / DAB+ broadcasting package collection](https://build.opensuse.org/project/show/home:radiorabe:dab).
+CentOS 7 RPM Specfile for [Opendigitalradio's fork of the standalone library of the Fraunhofer FDK AAC code from Android (fdk-aac-dabplus)](https://github.com/Opendigitalradio/fdk-aac-dabplus) which is part of [RaBe's DAB / DAB+ broadcasting package collection](https://build.opensuse.org/project/show/home:radiorabe:dab).
 
 ## Usage
 
