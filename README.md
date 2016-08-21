@@ -15,5 +15,5 @@ There are pre-built binary packages for CentOS 7 available on [Radio RaBe's OBS 
 curl -o /etc/yum.repos.d/home:radiorabe:dab.repo \
      http://download.opensuse.org/repositories/home:/radiorabe:/dab/CentOS_7/home:radiorabe:dab.repo
      
-yum install libtoolame-dab-odr
+yum install fdk-aac-dabplus-odr
 ```
