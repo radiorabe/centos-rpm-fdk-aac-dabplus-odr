@@ -5,7 +5,7 @@ The Specfile consists out of the main package <code>fdk-aac-dabplus-odr</code> a
 
 The package supports [conditional builds](http://www.rpm.org/wiki/PackagerDocs/ConditionalBuilds) with the following default parameters (see the [FDK-AAC-DABplus package description](https://github.com/Opendigitalradio/fdk-aac-dabplus/blob/master/README.md) for further information):
 ```bash
- rpmbuild -ba fdk-aac-dabplus-odr.spec --with alsa --with imagemagick --without jack --without vlc
+ rpmbuild -ba fdk-aac-dabplus-odr.spec --with alsa --without imagemagick --without jack --without vlc
 ```
 
 ## Usage
