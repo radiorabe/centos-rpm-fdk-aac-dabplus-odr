@@ -1,5 +1,5 @@
 #
-# spec file for package libfdk-dabplus-odr
+# spec file for package fdk-aac-dabplus-odr
 # and subpackages libfdk-dabplus-odr and libtoolame-dab-odr
 #
 # Copyright (c) 2016 Radio Bern RaBe
@@ -45,8 +45,8 @@
 # Conditional build support
 # add --without alsa option, i.e. enable alsa by default
 %bcond_without alsa
-# add --without imagemagick option, i.e. enable imagemagick by default
-%bcond_without imagemagick
+# add --without imagemagick option, i.e. disable imagemagick by default
+%bcond_with imagemagick
 # add --with jack option, i.e. disable jack by default
 %bcond_with jack
 # add --with vlc option, i.e. disable vlc by default
@@ -54,7 +54,7 @@
 
 Name:           %{main_name}
 Version:        %{main_version}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Opendigitalradio's fork of the standalone library of the Fraunhofer FDK AAC code from Android
 
 License:        ASL 2.0 GPLv3+
@@ -77,8 +77,8 @@ Requires:       alsa-lib
 %endif
 
 %if %{with imagemagick}
-BuildRequires:  imagemagick-devel
-Requires:       imagemagick-lib
+BuildRequires:  ImageMagick-devel
+Requires:       ImageMagick
 %endif
 
 %if %{with jack}
@@ -205,5 +205,8 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/dabplus-enc
 
 
 %changelog
+* Sun Aug 21 2016 Christian Affolter <c.affolter@purplehaze.ch> - 1.1.0-2
+- Fixed ImageMagick dependencies
+
 * Sat Aug 20 2016 Christian Affolter <c.affolter@purplehaze.ch> - 1.1.0-1
 - Initial release
