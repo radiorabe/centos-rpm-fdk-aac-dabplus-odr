@@ -30,11 +30,11 @@
 # Names and versions of the (sub)packages
 # See https://www.redhat.com/archives/rpm-list/2000-October/msg00216.html
 %define main_name fdk-aac-dabplus-odr
-%define main_version 1.1.0 
+%define main_version 1.1.0
 
 %define libfdk_dabplus_name libfdk-dabplus-odr
 # Version relates to libFDK/src/FDK_core.cpp (FDK tools library info)
-%define libfdk_dabplus_version 2.3.2.odr 
+%define libfdk_dabplus_version 2.3.2.odr
 %define libfdk_dabplus_license FraunhoferFDK
 
 %define libtoolame_dab_name libtoolame-dab-odr
