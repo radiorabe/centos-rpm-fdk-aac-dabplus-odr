@@ -1,6 +1,6 @@
 #
 # spec file for package fdk-aac-dabplus-odr
-# and subpackages libfdk-dabplus-odr and libtoolame-dab-odr
+# and subpackages libfdk-aac-dabplus-odr and libtoolame-dab-odr
 #
 # Copyright (c) 2016 Radio Bern RaBe
 #                    http://www.rabe.ch
@@ -32,10 +32,10 @@
 %define main_name fdk-aac-dabplus-odr
 %define main_version 1.1.0
 
-%define libfdk_dabplus_name libfdk-dabplus-odr
+%define libfdk_aac_dabplus_name libfdk-aac-dabplus-odr
 # Version relates to libFDK/src/FDK_core.cpp (FDK tools library info)
-%define libfdk_dabplus_version 2.3.2.odr
-%define libfdk_dabplus_license FraunhoferFDK
+%define libfdk_aac_dabplus_version 2.3.2.odr
+%define libfdk_aac_dabplus_license FraunhoferFDK
 
 %define libtoolame_dab_name libtoolame-dab-odr
 # Version relates to libtoolame-dab/HISTORY
@@ -54,7 +54,7 @@
 
 Name:           %{main_name}
 Version:        %{main_version}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Opendigitalradio's fork of the standalone library of the Fraunhofer FDK AAC code from Android
 
 License:        ASL 2.0 GPLv3+
@@ -66,7 +66,7 @@ BuildRequires:  chrpath
 BuildRequires:  libfec-odr-devel
 BuildRequires:  libtool
 BuildRequires:  zeromq-devel
-Requires:       %{libfdk_dabplus_name}
+Requires:       %{libfdk_aac_dabplus_name}
 Requires:       libfec-odr
 Requires:       %{libtoolame_dab_name}
 Requires:       zeromq
@@ -102,26 +102,26 @@ The main tool is the dabplus-enc encoder, which can read audio from a file
 file, a pipe, or to a ZeroMQ output compatible with ODR-DabMux.
 
 
-%package -n     %{libfdk_dabplus_name}
-Version:        %{libfdk_dabplus_version}
+%package -n     %{libfdk_aac_dabplus_name}
+Version:        %{libfdk_aac_dabplus_version}
 Summary:        Opendigitalradio's fork of the Fraunhofer FDK AAC Codec Library for Android
-License:        %{libfdk_dabplus_license}
+License:        %{libfdk_aac_dabplus_license}
 
-%description -n %{libfdk_dabplus_name}
+%description -n %{libfdk_aac_dabplus_name}
 The Fraunhofer FDK AAC Codec Library for Android ("FDK AAC Codec") is software
 that implements the MPEG Advanced Audio Coding ("AAC") encoding and decoding
 scheme for digital audio.
 
 
-%package -n     %{libfdk_dabplus_name}-devel
-Version:        %{libfdk_dabplus_version}
-Summary:        Development files for %{libfdk_dabplus_name}
-License:        %{libfdk_dabplus_license}
-Requires:       %{libfdk_dabplus_name}%{?_isa} = %{libfdk_dabplus_version}-%{release}
+%package -n     %{libfdk_aac_dabplus_name}-devel
+Version:        %{libfdk_aac_dabplus_version}
+Summary:        Development files for %{libfdk_aac_dabplus_name}
+License:        %{libfdk_aac_dabplus_license}
+Requires:       %{libfdk_aac_dabplus_name}%{?_isa} = %{libfdk_aac_dabplus_version}-%{release}
 
-%description -n %{libfdk_dabplus_name}-devel
-The %{libfdk_dabplus_name}-devel package contains libraries and header files for
-developing applications that use %{libfdk_dabplus_name}.
+%description -n %{libfdk_aac_dabplus_name}-devel
+The %{libfdk_aac_dabplus_name}-devel package contains libraries and header files for
+developing applications that use %{libfdk_aac_dabplus_name}.
 
 
 %package -n     %{libtoolame_dab_name}
@@ -185,10 +185,10 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/dabplus-enc
 %{_bindir}/*
 
 
-%files -n %{libfdk_dabplus_name}
+%files -n %{libfdk_aac_dabplus_name}
 %{_libdir}/libfdk-dabplus.so.*
 
-%files -n %{libfdk_dabplus_name}-devel
+%files -n %{libfdk_aac_dabplus_name}-devel
 %{_libdir}/pkgconfig/fdk-dabplus.pc
 %{_includedir}/fdk-dabplus/*
 %{_libdir}/libfdk-dabplus.so
@@ -205,6 +205,9 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/dabplus-enc
 
 
 %changelog
+* Thu Aug 25 2016 Christian Affolter <c.affolter@purplehaze.ch> - 1.1.0-3
+- Switched name of lib subpackage to libfdk-aac-dabplus-odr to avoid confusion.
+
 * Sun Aug 21 2016 Christian Affolter <c.affolter@purplehaze.ch> - 1.1.0-2
 - Fixed ImageMagick dependencies
 
