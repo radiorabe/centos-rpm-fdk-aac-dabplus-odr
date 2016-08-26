@@ -45,8 +45,8 @@
 # Conditional build support
 # add --without alsa option, i.e. enable alsa by default
 %bcond_without alsa
-# add --without imagemagick option, i.e. disable imagemagick by default
-%bcond_with imagemagick
+# add --without imagemagick option, i.e. enable imagemagick by default
+%bcond_without imagemagick
 # add --with jack option, i.e. disable jack by default
 %bcond_with jack
 # add --with vlc option, i.e. disable vlc by default
