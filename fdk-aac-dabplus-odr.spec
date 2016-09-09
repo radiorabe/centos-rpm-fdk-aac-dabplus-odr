@@ -30,7 +30,7 @@
 # Names and versions of the (sub)packages
 # See https://www.redhat.com/archives/rpm-list/2000-October/msg00216.html
 %define main_name fdk-aac-dabplus-odr
-%define main_version 1.1.0
+%define main_version 1.2.0
 
 %define libfdk_aac_dabplus_name libfdk-aac-dabplus-odr
 # Version relates to libFDK/src/FDK_core.cpp (FDK tools library info)
@@ -54,7 +54,7 @@
 
 Name:           %{main_name}
 Version:        %{main_version}
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        Opendigitalradio's fork of the standalone library of the Fraunhofer FDK AAC code from Android
 
 License:        ASL 2.0 GPLv3+
@@ -205,6 +205,9 @@ chrpath --delete $RPM_BUILD_ROOT%{_bindir}/dabplus-enc
 
 
 %changelog
+* Sat Sep  3 2016 Lucas Bickel <hairmare@rabe.ch> - 1.2.0-1
+- Version bump
+
 * Thu Aug 25 2016 Christian Affolter <c.affolter@purplehaze.ch> - 1.1.0-3
 - Switched name of lib subpackage to libfdk-aac-dabplus-odr to avoid confusion.
 
