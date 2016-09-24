@@ -1,6 +1,5 @@
 #
 # spec file for package fdk-aac-dabplus-odr
-# and subpackages libfdk-aac-dabplus-odr and libtoolame-dab-odr
 #
 # Copyright (c) 2016 Radio Bern RaBe
 #                    http://www.rabe.ch
@@ -25,137 +24,51 @@
 
 
 # Name of the GitHub repository
-%define reponame fdk-aac-dabplus
+%define reponame fdk-aac
 
-# Names and versions of the (sub)packages
-# See https://www.redhat.com/archives/rpm-list/2000-October/msg00216.html
-%define main_name fdk-aac-dabplus-odr
-%define main_version 1.2.0
+# Note, that at the time of writing there was no official release available.
+# To get a stable reproducable build, a specific Git commit is used instead.
+%global commit0 aad197a2a2e3b8897279a34778946355589b02fa
+%global shortcommit0 aad197a
 
-%define libfdk_aac_dabplus_name libfdk-aac-dabplus-odr
-# Version relates to libFDK/src/FDK_core.cpp (FDK tools library info)
-%define libfdk_aac_dabplus_version 2.3.2.odr
-%define libfdk_aac_dabplus_license FraunhoferFDK
 
-%define libtoolame_dab_name libtoolame-dab-odr
-# Version relates to libtoolame-dab/HISTORY
-%define libtoolame_dab_version 0.2l.odr
-%define libtoolame_dab_license LGPLv2+
-
-# Conditional build support
-# add --without alsa option, i.e. enable alsa by default
-%bcond_without alsa
-# add --without imagemagick option, i.e. enable imagemagick by default
-%bcond_without imagemagick
-# add --with jack option, i.e. disable jack by default
-%bcond_with jack
-# add --with vlc option, i.e. disable vlc by default
-%bcond_with vlc
-
-Name:           %{main_name}
-Version:        %{main_version}
+Name:           fdk-aac-dabplus-odr
+# The Version is made up out of the fdk-aac upstream version, according to
+# the ChangeLog and the last origin repo tag, with the short commit hash
+# from the ODR git repositry appended.
+Version:        0.1.4.odr.%{shortcommit0}
 Release:        1%{?dist}
 Summary:        Opendigitalradio's fork of the standalone library of the Fraunhofer FDK AAC code from Android
 
-License:        ASL 2.0 GPLv3+
+License:        FraunhoferFDK
 URL:            https://github.com/Opendigitalradio/%{reponame}
-Source0:        https://github.com/Opendigitalradio/%{reponame}/archive/v%{main_version}.tar.gz#/%{main_name}-%{main_version}.tar.gz
+Source0:        https://github.com/Opendigitalradio/%{reponame}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 
-
-BuildRequires:  chrpath
-BuildRequires:  libfec-odr-devel
-BuildRequires:  libtool
-BuildRequires:  zeromq-devel
-Requires:       %{libfdk_aac_dabplus_name}
-Requires:       libfec-odr
-Requires:       %{libtoolame_dab_name}
-Requires:       zeromq
-
-%if %{with alsa}
-BuildRequires:  alsa-lib-devel
-Requires:       alsa-lib
-%endif
-
-%if %{with imagemagick}
-BuildRequires:  ImageMagick-devel
-Requires:       ImageMagick
-%endif
-
-%if %{with jack}
-BuildRequires:  jack-audio-connection-kit-devel
-Requires:       jack-audio-connection-kit
-%endif
-
-%if %{with vlc}
-BuildRequires:  vlc-devel
-Requires:       vlc
-%endif
 
 %description
-This package contains a DAB and DAB+ encoder that integrates into the
-ODR-mmbTools.
-The DAB encoder is based on toolame. The DAB+ encoder uses a modified library
-of the Fraunhofer FDK AAC code from Android, patched for 960-transform to do
-DAB+ broadcast encoding.
-The main tool is the dabplus-enc encoder, which can read audio from a file
-(raw or wav), from an ALSA source, from JACK or using libVLC, and encode to a
-file, a pipe, or to a ZeroMQ output compatible with ODR-DabMux.
-
-
-%package -n     %{libfdk_aac_dabplus_name}
-Version:        %{libfdk_aac_dabplus_version}
-Summary:        Opendigitalradio's fork of the Fraunhofer FDK AAC Codec Library for Android
-License:        %{libfdk_aac_dabplus_license}
-
-%description -n %{libfdk_aac_dabplus_name}
 The Fraunhofer FDK AAC Codec Library for Android ("FDK AAC Codec") is software
 that implements the MPEG Advanced Audio Coding ("AAC") encoding and decoding
 scheme for digital audio.
+This package contains a a modified version of this library, patched for
+960-transform to do DAB+ broadcast encoding.
 
 
-%package -n     %{libfdk_aac_dabplus_name}-devel
-Version:        %{libfdk_aac_dabplus_version}
-Summary:        Development files for %{libfdk_aac_dabplus_name}
-License:        %{libfdk_aac_dabplus_license}
-Requires:       %{libfdk_aac_dabplus_name}%{?_isa} = %{libfdk_aac_dabplus_version}-%{release}
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description -n %{libfdk_aac_dabplus_name}-devel
-The %{libfdk_aac_dabplus_name}-devel package contains libraries and header files for
-developing applications that use %{libfdk_aac_dabplus_name}.
-
-
-%package -n     %{libtoolame_dab_name}
-Version:        %{libtoolame_dab_version}
-Summary:        Opendigitalradio's fork of tooLAME
-License:        %{libtoolame_dab_license}
-
-%description -n %{libtoolame_dab_name}
-tooLAME is an optimized Mpeg Audio 1/2 Layer 2 encoder. It is based heavily on
-- the ISO dist10 code - improvement to algorithms as part of the LAME project,
-in form of a library to be used with the encoder for the ODR-mmbTools
-
-
-%package -n     %{libtoolame_dab_name}-devel
-Version:        %{libtoolame_dab_version}
-Summary:        Development files for %{libtoolame_dab_name}
-License:        %{libtoolame_dab_license}
-Requires:       %{libtoolame_dab_name}%{?_isa} = %{libtoolame_dab_version}-%{release}
-
-%description -n %{libtoolame_dab_name}-devel
-The %{libtoolame_dab_name}-devel package contains libraries and header files for
-developing applications that use %{libtoolame_dab_name}.
+%description    devel
+The %{name}-devel package contains libraries and header files for
+developing applications that use %{name}.
 
 
 %prep
-%setup -q -n %{reponame}-%{main_version}
+%setup -q -n %{reponame}-%{commit0}
 
 
 %build
 autoreconf -fi
-%configure --disable-static \
-           %{?with_alsa:--enable-alsa} \
-           %{?with_jack:--enable-jack} \
-           %{?with_vlc:--enable-vlc}
+%configure --disable-static
            
 make %{?_smp_mflags}
 
@@ -165,54 +78,22 @@ rm -rf $RPM_BUILD_ROOT
 %make_install
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
-# Remove Rpath to get rid of hardcoded library paths
-# and pass the check-rpaths tests:
-# ERROR   0002: file '/usr/bin/dabplus-enc' contains an invalid rpath
-#
-# Unfortunately, passing --disable-rpath to configure is not supported,
-# that's why chrpath is used. This should be fixed within the buildsystem
-# someday.
-chrpath --delete $RPM_BUILD_ROOT%{_bindir}/dabplus-enc
-
-
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 
 %files
-%doc ChangeLog NOTICE README.md
-%{_bindir}/*
+%doc ChangeLog NOTICE
+%{_libdir}/*.so.*
 
-
-%files -n %{libfdk_aac_dabplus_name}
-%{_libdir}/libfdk-dabplus.so.*
-
-%files -n %{libfdk_aac_dabplus_name}-devel
-%{_libdir}/pkgconfig/fdk-dabplus.pc
-%{_includedir}/fdk-dabplus/*
-%{_libdir}/libfdk-dabplus.so
-
-
-%files -n %{libtoolame_dab_name}
-%{_libdir}/libtoolame-dab.so.*
-
-%files -n %{libtoolame_dab_name}-devel
-%doc libtoolame-dab/HISTORY libtoolame-dab/README.md
-%{_libdir}/pkgconfig/fdk-dabplus.pc
-%{_includedir}/libtoolame-dab/*
-%{_libdir}/libtoolame-dab.so
+%files devel
+%doc documentation/*.pdf
+%{_includedir}/*
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/fdk-aac.pc
 
 
 %changelog
-* Sat Sep  3 2016 Lucas Bickel <hairmare@rabe.ch> - 1.2.0-1
-- Version bump
-
-* Thu Aug 25 2016 Christian Affolter <c.affolter@purplehaze.ch> - 1.1.0-3
-- Switched name of lib subpackage to libfdk-aac-dabplus-odr to avoid confusion.
-
-* Sun Aug 21 2016 Christian Affolter <c.affolter@purplehaze.ch> - 1.1.0-2
-- Fixed ImageMagick dependencies
-
-* Sat Aug 20 2016 Christian Affolter <c.affolter@purplehaze.ch> - 1.1.0-1
-- Initial release
+* Fri Sep 23 2016 Christian Affolter <c.affolter@purplehaze.ch> - 0.1.4.odr.aad197a-1
+- New release, according to the ODR project reorganisation
