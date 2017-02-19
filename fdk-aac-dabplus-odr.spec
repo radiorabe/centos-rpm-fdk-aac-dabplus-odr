@@ -1,8 +1,8 @@
 #
 # spec file for package fdk-aac-dabplus-odr
 #
-# Copyright (c) 2016 Radio Bern RaBe
-#                    http://www.rabe.ch
+# Copyright (c) 2016 - 2017 Radio Bern RaBe
+#                           http://www.rabe.ch
 #
 # This program is free software: you can redistribute it and/or
 # modify it under the terms of the GNU Affero General Public 
@@ -28,8 +28,8 @@
 
 # Note, that at the time of writing there was no official release available.
 # To get a stable reproducable build, a specific Git commit is used instead.
-%global commit0 aad197a2a2e3b8897279a34778946355589b02fa
-%global shortcommit0 aad197a
+%global commit0 725713585f9bbf668abbe5b94c1ed01b921b1fcb
+%global shortcommit0 7257135
 
 
 Name:           fdk-aac-dabplus-odr
@@ -37,7 +37,7 @@ Name:           fdk-aac-dabplus-odr
 # the ChangeLog and the last origin repo tag, with the short commit hash
 # from the ODR git repositry appended.
 Version:        0.1.4.odr.%{shortcommit0}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Opendigitalradio's fork of the standalone library of the Fraunhofer FDK AAC code from Android
 
 License:        FraunhoferFDK
@@ -95,5 +95,8 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Fri Feb 17 2017 Lucas Bickel <hairmare@rabe.ch> - 0.1.4.odr.7257135-2
+- Bump https://github.com/Opendigitalradio/fdk-aac/pull/21
+
 * Fri Sep 23 2016 Christian Affolter <c.affolter@purplehaze.ch> - 0.1.4.odr.aad197a-1
 - New release, according to the ODR project reorganisation
