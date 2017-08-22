@@ -28,16 +28,16 @@
 
 # Note, that at the time of writing there was no official release available.
 # To get a stable reproducable build, a specific Git commit is used instead.
-%global commit0 725713585f9bbf668abbe5b94c1ed01b921b1fcb
-%global shortcommit0 7257135
+%global commit0 89639e36b29a622c641c3de3a4737a4c848dc365
+%global shortcommit0 89639e3
 
 
 Name:           fdk-aac-dabplus-odr
 # The Version is made up out of the fdk-aac upstream version, according to
 # the ChangeLog and the last origin repo tag, with the short commit hash
 # from the ODR git repositry appended.
-Version:        0.1.4.odr.%{shortcommit0}
-Release:        2%{?dist}
+Version:        0.1.5.odr.%{shortcommit0}
+Release:        1%{?dist}
 Summary:        Opendigitalradio's fork of the standalone library of the Fraunhofer FDK AAC code from Android
 
 License:        FraunhoferFDK
@@ -84,7 +84,7 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %files
-%doc ChangeLog NOTICE
+%doc ChangeLog NOTICE README.md
 %{_libdir}/*.so.*
 
 %files devel
@@ -95,6 +95,10 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Tue Aug 22 2017 Christian Affolter <c.affolter@purplehaze.ch> - 0.1.5.odr.89639e3-1
+- Version bump to 0.1.5 Git 89639e3
+- Including README.md
+
 * Fri Feb 17 2017 Lucas Bickel <hairmare@rabe.ch> - 0.1.4.odr.7257135-2
 - Bump https://github.com/Opendigitalradio/fdk-aac/pull/21
 
